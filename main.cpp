@@ -15,7 +15,7 @@
 class Domain {
 public:
     Domain() = default;
-    Domain(std::string data) noexcept
+    Domain(std::string data)
         : data_(std::make_move_iterator(data.rbegin()), std::make_move_iterator(data.rend())) {
     }
 
@@ -42,7 +42,7 @@ public:
         : to_check_(begin, end) {
     }
 
-    bool IsForbidden(const Domain& other) const noexcept {
+    bool IsForbidden(const Domain& other) const {
         auto what = std::ranges::upper_bound(to_check_, other, std::less{});
 
         if (what != to_check_.begin()) {
